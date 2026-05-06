@@ -1,0 +1,15 @@
+def search(arr, num):
+    # Loop through the array
+    for i in range(len(arr)):
+        if arr[i] == num:  # If match found
+            return i
+    return -1  # If not found
+
+
+# Main
+arr = [1, 2, 3, 4, 5]
+num = 4
+
+val = search(arr, num)
+
+print(val)
