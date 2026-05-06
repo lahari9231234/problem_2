@@ -1,0 +1,28 @@
+class Solution:
+    def longest_subarray(self, nums, k):
+        prefix_sum_map = {}   
+        prefix_sum = 0
+        max_len = 0
+
+        for i in range(len(nums)):
+            prefix_sum += nums[i]
+
+            if prefix_sum == k:
+                max_len = i + 1
+
+            if (prefix_sum - k) in prefix_sum_map:
+                length = i - prefix_sum_map[prefix_sum - k]
+                max_len = max(max_len, length)
+
+            if prefix_sum not in prefix_sum_map:
+                prefix_sum_map[prefix_sum] = i
+
+        return max_len
+
+
+# Main
+nums = [10, 5, 2, 7, 1, 9]
+k = 15
+
+sol = Solution()
+print("The length of longest subarray having sum k is:", sol.longest_subarray(nums, k))
