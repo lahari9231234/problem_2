@@ -1,0 +1,28 @@
+class Solution:
+
+    # Function to find leaders in the array
+    def leaders(self, nums):
+
+        ans = []
+
+        # If array is empty
+        if not nums:
+            return ans
+
+        # Last element is always a leader
+        maximum = nums[-1]
+        ans.append(maximum)
+
+        # Traverse from right to left
+        for i in range(len(nums) - 2, -1, -1):
+
+            if nums[i] > maximum:
+                ans.append(nums[i])
+                maximum = nums[i]
+
+        # Reverse to maintain original order
+        ans.reverse()
+
+        return ans
+
+
