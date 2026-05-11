@@ -1,0 +1,25 @@
+class Solution:
+
+    def next_permutation(self, nums):
+
+        index = -1
+
+        # Find first decreasing element from the end
+        for i in range(len(nums) - 2, -1, -1):
+            if nums[i] < nums[i + 1]:
+                index = i
+                break
+
+        # If no index found, reverse whole array
+        if index == -1:
+            nums.reverse()
+            return
+
+        # Find element just greater than nums[index]
+        for i in range(len(nums) - 1, index, -1):
+            if nums[i] > nums[index]:
+                nums[i], nums[index] = nums[index], nums[i]
+                break
+
+        # Reverse the part after index
+        nums[index + 1:] = reversed(nums[index + 1:])
